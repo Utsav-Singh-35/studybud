@@ -31,7 +31,14 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-7mxu)@=_-&l!d9lqc0nnc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '.vercel.app,127.0.0.1,studybud-a6op.onrender.com').split(',')
+# Add the Render domain directly to ALLOWED_HOSTS
+ALLOWED_HOSTS = [
+    'localhost', 
+    '127.0.0.1',
+    '.vercel.app',
+    '.onrender.com',
+    'studybud-a6op.onrender.com',
+]
 
 
 # Application definition
