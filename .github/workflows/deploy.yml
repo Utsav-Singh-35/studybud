@@ -47,7 +47,7 @@ jobs:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
-    - name: Build and push
+    - name: Build and push Docker image
       run: |
-        docker build -t docker.io/utsavsingh35/studybud:latest .
-        docker push docker.io/utsavsingh35/studybud:latest
+        docker build -t utsavsingh35/studybud-web:latest .
+        docker push utsavsingh35/studybud-web:latest
