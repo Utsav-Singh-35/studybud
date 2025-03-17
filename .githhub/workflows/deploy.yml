@@ -1,23 +1,70 @@
-name: Deploy to Docker Hub
+# name: Deploy to Docker Hub
+
+# on:
+#   push:
+#     branches:
+#       - main  
+
+# jobs:
+#   build-and-push:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout Repository
+#         uses: actions/checkout@v3
+
+#       - name: Login to Docker
+#         run: echo "${{ secrets.DOCKER_ACCESS_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+#       - name: Build Docker Image
+#         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/studybud:latest .
+
+#       - name: Push Docker Image
+#         run: docker push ${{ secrets.DOCKER_USERNAME }}/studybud:latest
+
+
+name: Django CI/CD with Docker
 
 on:
   push:
     branches:
-      - main  
+      - main
 
 jobs:
-  build-and-push:
+  build-and-latest
+
+    steps:
+    - name: Checkout code
+     -deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+ uses: actions/checkout@v2
 
-      - name: Login to Docker
-        run: echo "${{ secrets.DOCKER_ACCESS_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+    - name: Set up Docker Build      - name: Checkout code
+        uses: actions/x
+      uses: docker/setup-buildx-action@v1
 
-      - name: Build Docker Image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/studybud:latest .
+   checkout@v2
 
-      - name: Push Docker Image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/studybud:latest
+      - name: Set up Docker Buildx
+        uses: - name: Log in to Docker Hub
+      env:
+        DO docker/setup-buildx-action@v1
+
+      - name:CKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DO Log in to Docker Hub
+        run: echo ${{ secrets.DOCKER_HUB_PASSWORD }} | docker login -CKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      runu ${{ secrets.D: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAMEOCKER_HUB_USERNAME }} --password-stdin
+
+      - name: Build and push Docker image
+        run: |
+          docker --password-stdin
+
+    - name: Build and push
+ build -t ${{ secrets.DOCKER_HUB_USERNAME }}/study      run: |
+        docker build -t docker.io/utsavbud:latest .
+          docker push ${{ secrets.Dsingh35/studybud:latest .
+        docker push docker.ioOCKER_HUB_USERNAME }}/studybud:latest
+
+      - name:/utsavsingh35/studybud:latest
