@@ -1,0 +1,53 @@
+# name: Deploy to Docker Hub
+
+# on:
+#   push:
+#     branches:
+#       - main  
+
+# jobs:
+#   build-and-push:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout Repository
+#         uses: actions/checkout@v3
+
+#       - name: Login to Docker
+#         run: echo "${{ secrets.DOCKER_ACCESS_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+#       - name: Build Docker Image
+#         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/studybud:latest .
+
+#       - name: Push Docker Image
+#         run: docker push ${{ secrets.DOCKER_USERNAME }}/studybud:latest
+
+
+name: Django CI/CD with Docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Log in to Docker Hub
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+
+    - name: Build and push
+      run: |
+        docker build -t docker.io/utsavsingh35/studybud:latest .
+        docker push docker.io/utsavsingh35/studybud:latest
