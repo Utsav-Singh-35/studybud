@@ -1,12 +1,15 @@
 {
-    "build": {
-      "env": {
-        "DJANGO_SETTINGS_MODULE": "studybud.settings.production"
-      }
-      
-    },
-    "routes": [
-      { "src": "/static/(.*)", "dest": "/static/$1" },
-      { "src": "/(.*)", "dest": "/app/wsgi.py" }
-    ]
-  }
+  "builds": [
+    {
+      "src": "studybud/wsgi.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "15mb" }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "studybud/wsgi.py"
+    }
+  ]
+}
